@@ -1,17 +1,21 @@
 {
-  "name": "nodejs",
-  "version": "1.0.0",
-  "description": "",
+  "name": "sanjay-lgtm",
+  "version": "1.1.0",
+  "description": "A simple packgage to greet use",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "greet",
+    "test"
+  ],
   "author": "sanjay",
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.3.0",
-    "express": "^4.19.2",
-    "node-wifi": "^2.0.16",
+    "color": "^4.2.3",
     "sanjay-lgtm": "^1.1.0"
   }
 }
