@@ -1,0 +1,5 @@
+127.0.0.1 => PC IP Address
+localhost => Domain of PC
+Every requset/response devide into two parts =>
+1.Header => Stores metadata
+2.body => Actual Data

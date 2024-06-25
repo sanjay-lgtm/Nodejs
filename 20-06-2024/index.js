@@ -111,11 +111,11 @@
 //     }
 // });
 
-const greet = require("sanjay-lgtm")
-const chalk = require("chalk")
+// const greet = require('sanjay-lgtm')
 
-greet.sayHi();
 
-greet.greetUser("ABCD");
+// greet.sayHi();
 
-console.log(chalk.backgroundColorNames("HELLO"));//Hello Sanjay!
+// greet.greetUser("ABCD");
+
+// console.log(chalk.blue("HELLO"));//Hello Sanjay!
