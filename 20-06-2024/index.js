@@ -119,3 +119,8 @@
 // greet.greetUser("ABCD");
 
 // console.log(chalk.blue("HELLO"));//Hello Sanjay!
+
+
+const ArrayUtils = require('arrray-utils');
+
+console.log(ArrayUtils.sum([1,2,3,4]))
