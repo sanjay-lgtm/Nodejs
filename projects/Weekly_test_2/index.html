@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPL Stats</title>
+  <script src="app.js"></script>
+  <script src="controller.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="runsChart"></canvas>
+  <script>
+    async function fetchData() {
+      const response = await fetch('/data');
+      const data = await response.json();
+      return data;
+    }
+
+    function createChart(data) {
+      const ctx = document.getElementById('runsChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: data.map(player => player.name),
+          datasets: [{
+            label: 'Runs',
+            data: data.map(player => player.runs),
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    fetchData().then(createChart);
+  </script>
+</body>
+</html>
