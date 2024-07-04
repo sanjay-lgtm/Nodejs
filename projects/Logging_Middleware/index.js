@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express')
+const morgan = require('morgan')
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -22,6 +23,9 @@ const debugLogger = (req, res, next) => {
     console.log(`DEBUG: ${req.method} request to ${req.url} with headers: ${JSON.stringify(req.headers)}`);
     next();
 }
+
+const logFormat = process.env.LOG_LEVEL === 'debug' ? 'combined' : 'common';
+app.use(morgan(logFormat));
 
 const logLevel = process.env.LOG_LEVEL || 'info';
 if (logLevel === 'info') {
