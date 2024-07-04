@@ -1,9 +1,10 @@
 const express = require('express');
-
+const dotenv = require('dotenv')
 const data = require('./data.js')
 const app = express();
-
-const PORT = 8080;
+// import 'dotenv/config'
+// const DB = require("./config").get(process.env.node_env).DB;
+const PORT = process.env.PORT || 8000;
 
 const jokeMiddleware = (req, res, next) => {
     req.joke = "This is a joke";
