@@ -2,14 +2,16 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import loggingMiddleware from './middlewares/loggingMiddleware.js';
+import morgan from 'morgan';
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
-
+connectDB();
 app.use(loggingMiddleware);
-connectDB()
+app.use(morgan('combined'));
+
 app.get('/', (req, res) => {
     res.send('API is running...')
 })
