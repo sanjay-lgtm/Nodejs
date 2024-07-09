@@ -41,30 +41,70 @@ const listJob = async(req,res)=>{
     })
 }
 
-const updateJob = async(req,res) =>{
-    console.log(req.params.id);
-    const updateObj ={
-        $set:req.body,
-    };
-    const filterObj = {
-        salary:{
-            $lte:80000
+
+const updateJob = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const updateObj = {
+            $set: req.body,
+        };
+
+        const filterObj = {
+            _id: id, // Ensure the update is for the specific job by its ID
+            salary: {
+                $lte: 80000, // Additional filter for the salary
+            },
+        };
+
+        const response = await jobs.updateMany(filterObj, updateObj);
+        console.log(response);
+
+        if (response.nModified === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'No job found with the specified criteria',
+            });
         }
+
+        res.status(200).json({
+            success: true,
+            message: 'Job updated successfully',
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Server Error',
+        });
     }
-    const response = await jobs.updateMany(filterObj,updateObj);
-    console.log(response);
+};
 
-    res.status(200).json({
-        success:true,
-        message:"Update job api"
-    })
-}
 
-const deleteJob = (req,res) =>{
-    jobs.findByIdAndDelete(id);
-    res.status(201).json({
+
+const deleteJob = async (req, res) => {
+    try {
+      const id = req.params.id; // Extract the job ID from the request parameters
+  
+      const job = await jobs.findByIdAndDelete(id);
+  
+      if (!job) {
+        return res.status(404).json({
+          success: false,
+          message: 'Job not found',
+        });
+      }
+  
+      res.status(200).json({
         success: true,
-        message: "Delete job API",
+        message: 'Job deleted successfully',
       });
-}
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        success: false,
+        message: 'Server Error',
+      });
+    }
+  };
 export  {createJob,listJob,updateJob,deleteJob};
