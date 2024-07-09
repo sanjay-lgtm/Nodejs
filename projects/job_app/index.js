@@ -1,11 +1,16 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+import jobRoutes from './routes/job.js'
+import loggingMiddleware from './middlewares/loggingMiddleware.js';
+dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-mongoose.connect("mongodb://localhost:27017/job_app")
-.then(() => console.log("connected to db"))
-.catch((err) => console.log("Error while connection",err))
+app.use(express.json());
+connectDB();
 
-app.use(express.json())
+app.use(loggingMiddleware);
+app.use('/api/jobs', jobRoutes)
 
-app.listen(8080,()=> console.log(`Server is running on 8080`))
+app.listen(PORT, () => console.log(`Server is running on ${PORT}`))

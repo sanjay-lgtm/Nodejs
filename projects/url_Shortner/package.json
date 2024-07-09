@@ -1,5 +1,5 @@
 {
-  "name": "job_app",
+  "name": "url_shortner",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,9 +11,8 @@
   "author": "sanjay",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.4.5",
+    "nanoid": "^5.0.7",
     "nodemon": "^3.1.4"
   }
 }
