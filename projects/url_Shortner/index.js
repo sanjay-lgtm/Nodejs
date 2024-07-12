@@ -17,6 +17,7 @@ const isUrlValid = (url) => {
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // Add this line to parse URL-encoded bodies
 app.use(loggingMiddleware);
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,18 +36,24 @@ app.post("/shorten", (req, res) => {
     });
   }
   const shortUrl = nanoid(5);
-  
-  const urlsPath = path.join(__dirname, 'urls.json');
-  
+
   let urlsJson = {};
-  if (fs.existsSync(urlsPath)) {
-    const urlsFromFile = fs.readFileSync(urlsPath, { encoding: "utf-8" });
+  try {
+    const urlsFromFile = fs.readFileSync('urls.json', { encoding: 'utf-8' });
     urlsJson = JSON.parse(urlsFromFile);
+  } catch (err) {
+    console.error('Error reading urls.json:', err);
   }
 
-  urlsJson[shortUrl] = req.body.longUrl; // Adding new url k-v pair in the json
+  urlsJson[shortUrl] = req.body.longUrl;
 
-  fs.writeFileSync(urlsPath, JSON.stringify(urlsJson));
+  try {
+    fs.writeFileSync('urls.json', JSON.stringify(urlsJson));
+  } catch (err) {
+    console.error('Error writing to urls.json:', err);
+    return res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+
   res.json({
     success: true,
     data: `http://localhost:8080/${shortUrl}`,
@@ -55,17 +62,18 @@ app.post("/shorten", (req, res) => {
 
 app.get("/:shortUrl", (req, res) => {
   const { shortUrl } = req.params;
-  
-  const urlsPath = path.join(__dirname, 'urls.json');
-  if (!fs.existsSync(urlsPath)) {
-    return res.end("Invalid Short Url");
+  let urlsJson = {};
+  try {
+    const urls = fs.readFileSync('urls.json', { encoding: "utf-8" });
+    urlsJson = JSON.parse(urls);
+  } catch (err) {
+    console.error('Error reading urls.json:', err);
+    return res.status(500).end('Internal Server Error');
   }
   
-  const urls = fs.readFileSync(urlsPath, { encoding: "utf-8" });
-  const urlsJson = JSON.parse(urls);
   const longUrl = urlsJson[shortUrl];
   if (!longUrl) {
-    return res.end("Invalid Short Url");
+    return res.status(404).end("Invalid Short Url");
   }
   res.redirect(longUrl);
 });
