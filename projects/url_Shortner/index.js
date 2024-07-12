@@ -70,7 +70,7 @@ app.get("/:shortUrl", (req, res) => {
     console.error('Error reading urls.json:', err);
     return res.status(500).end('Internal Server Error');
   }
-  
+
   const longUrl = urlsJson[shortUrl];
   if (!longUrl) {
     return res.status(404).end("Invalid Short Url");
@@ -78,4 +78,4 @@ app.get("/:shortUrl", (req, res) => {
   res.redirect(longUrl);
 });
 
-app.listen(8080, () => console.log(`Server is up and running at port 8080`));
+app.listen(10000, () => console.log(`Server is up and running at port 10000`));
