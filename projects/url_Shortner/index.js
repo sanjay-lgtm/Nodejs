@@ -56,7 +56,7 @@ app.post("/shorten", (req, res) => {
 
   res.json({
     success: true,
-    data: `http://localhost:8080/${shortUrl}`,
+    data: `https://localhost:10000/${shortUrl}`,
   });
 });
 
