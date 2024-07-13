@@ -17,7 +17,7 @@ const isUrlValid = (url) => {
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // Add this line to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true })); 
 app.use(loggingMiddleware);
 
 const __filename = fileURLToPath(import.meta.url);
@@ -56,7 +56,7 @@ app.post("/shorten", (req, res) => {
 
   res.json({
     success: true,
-    data: `https://localhost:10000/${shortUrl}`,
+    data: `http://localhost:10000/${shortUrl}`,
   });
 });
 

@@ -1,15 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>URL Shortener</title>
-</head>
-<body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      form {
+        background: #fff;
+        padding: 50px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      /* styles.css */
+      .sparkle-button {
+        position: relative;
+        padding: 15px 30px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #15171a;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .sparkle-button::before,
+      .sparkle-button::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.5) 20%,
+          transparent 20%
+        );
+        background-size: 20px 20px;
+        animation: sparkle 1s linear infinite;
+        pointer-events: none;
+      }
+
+      .sparkle-button::after {
+        animation-delay: 0.5s;
+      }
+
+      @keyframes sparkle {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(20px, 20px);
+        }
+      }
+
+      .sparkle-button:hover {
+        background-color: #7cdada;
+      }
+    </style>
+  </head>
+  <body>
     <form action="/shorten" method="post">
-        <label for="longUrl">Enter URL to shorten:</label>
-        <input type="text" id="longUrl" name="longUrl" required>
-        <button type="submit">Shorten URL</button>
+      <label for="longUrl">Enter URL to shorten:</label>
+      <input type="text" id="longUrl" name="longUrl" required />
+      <button type="submit" class="sparkle-button" onclick="createSparkles(event)">Shorten URL</button>
     </form>
-</body>
+  </body>
 </html>
