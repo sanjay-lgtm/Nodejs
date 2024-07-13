@@ -1,5 +1,5 @@
 
-# Email Sender App
+# Email Sender App📧
 ## Overview
 
 This Email Sender App is a simple web application that allows users to send emails via a web form. The app uses Node.js, Express.js for server-side handling, and Nodemailer for sending emails.
