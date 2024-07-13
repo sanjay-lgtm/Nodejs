@@ -53,10 +53,10 @@ app.post("/shorten", (req, res) => {
     console.error('Error writing to urls.json:', err);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
-
+  console.log(req.host)
   res.json({
     success: true,
-    data: `http://localhost:10000/${shortUrl}`,
+    data: `${req.protocol}://${req.get("host")}/${shortUrl}`,
   });
 });
 
