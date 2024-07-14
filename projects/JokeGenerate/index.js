@@ -20,7 +20,7 @@ app.get('/jokes', jokeMiddleware, (req, res) => {
     return res.status(200).json(data.jokes[randomIndex]);
 });
 
-app.get('/joke/:jokeId', (req, res) => {
+app.get('/jokes/:jokeId', (req, res) => {
     const jokeId = Number(req.params.jokeId);
     if (isNaN(jokeId) || jokeId < 0) {
         return res.status(400).json({ error: "Invalid joke id" })
@@ -38,7 +38,7 @@ app.get('/images',imageMiddleware,(req,res) =>{
     return res.status(200).json(data.images[randomIndex])
 });
 
-app.get('/image/:imageId', (req, res) => {
+app.get('/images/:imageId', (req, res) => {
     const imageId = Number(req.params.imageId);
     if (isNaN(imageId) || imageId < 0) {
         return res.status(400).json({ error: "Invalid image id" });
