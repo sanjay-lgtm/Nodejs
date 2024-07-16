@@ -6,9 +6,11 @@ import fileModel from '../model/file.js';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-    host: "localhost",
-    port: "1025",
-    secure: false,
+    service: 'gmail',
+    auth: {
+        user: process.env.GMAIL_USER, 
+        pass: process.env.GMAIL_PASS,
+    },
 });
 
 const uploadFolderPath = 'uploads';
@@ -20,7 +22,7 @@ if (!fs.existsSync(uploadFolderPath)) {
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, uploadFolderPath),
     filename: (req, file, cb) => {
-        const filename = uuidv4() + path.extname(file.originalname); // fixed originalName to originalname
+        const filename = uuidv4() + path.extname(file.originalname); 
         cb(null, filename);
     }
 });
