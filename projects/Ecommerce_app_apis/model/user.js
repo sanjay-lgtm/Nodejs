@@ -61,6 +61,12 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:false,
         default:"",
+    },
+    wishlist:{
+        type:[mongoose.Types.ObjectId],
+        required:false,
+        default:[],
+        ref:'products'
     }
 });
 
