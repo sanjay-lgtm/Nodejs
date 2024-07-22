@@ -7,4 +7,4 @@ APIS:--
 4. Send the sharable link on email.
 
 
-![UserView](https://github.com/sanjay-lgtm/Nodejs/tree/main/ScreenShots/FileShare.png?raw=true)
+![UserView](https://github.com/sanjay-lgtm/Nodejs/blob/tree/main/ScreenShots/FileShare.png?raw=true)
