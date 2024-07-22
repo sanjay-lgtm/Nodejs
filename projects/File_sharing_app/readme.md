@@ -6,3 +6,5 @@ APIS:--
 3. Downloadable link "/files/download/:fileId"
 4. Send the sharable link on email.
 
+
+![UserView](https://github.com/sanjay-lgtm/Nodejs/tree/main/ScreenShots/FileShare.png?raw=true)
