@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const fileSchema = new mongoose.Schema({
     originalName: {
@@ -13,11 +13,15 @@ const fileSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    downloadLink: {
+        type: String,
+        required: true
+    },
     uploadedAt: {
         type: Date,
         default: Date.now
     }
-})
+});
 
-const fileModel = mongoose.model("files", fileSchema)
+const fileModel = mongoose.model("File", fileSchema);
 export default fileModel;

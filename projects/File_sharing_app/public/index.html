@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing App</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>File Sharing App</h1>
+        </header>
+        
+        <main>
+            <section class="upload-section">
+                <h2>Upload File</h2>
+                <form id="uploadForm">
+                    <input type="file" id="fileInput" name="attachment" required>
+                    <button type="submit">Upload</button>
+                </form>
+                <div id="uploadResult"></div>
+            </section>
+
+            <section class="share-section">
+                <h2>Generate Shareable Link</h2>
+                <form id="generateLinkForm">
+                    <input type="text" id="fileIdInput" placeholder="Enter File ID" required>
+                    <button type="submit">Generate Link</button>
+                </form>
+                <div id="linkResult"></div>
+            </section>
+
+            <section class="email-section">
+                <h2>Send Email</h2>
+                <form id="sendEmailForm">
+                    <input type="text" id="emailFileIdInput" placeholder="Enter File ID" required>
+                    <input type="email" id="emailInput" placeholder="Enter Recipient Email" required>
+                    <button type="submit">Send Email</button>
+                </form>
+                <div id="emailResult"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
