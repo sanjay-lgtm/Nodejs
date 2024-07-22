@@ -41,7 +41,7 @@ document.getElementById('generateLinkForm').addEventListener('submit', async (e)
     const fileId = document.getElementById('fileIdInput').value;
 
     try {
-        const response = await fetch(`https://nodejs-5-2dpf.onrender.com/api/files/${fileId}`);
+        const response = await fetch(`https://nodejs-5-2dpf.onrender.com/api/files/files/${fileId}`);
         const result = await response.json();
 
         if (!response.ok) {
