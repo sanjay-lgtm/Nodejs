@@ -4,7 +4,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     formData.append('attachment', document.getElementById('fileInput').files[0]);
 
     try {
-        const response = await fetch('http://localhost:10000/api/files/upload', {
+        const response = await fetch('https://nodejs-5-2dpf.onrender.com/api/files/upload', {
             method: 'POST',
             body: formData,
         });
@@ -43,7 +43,7 @@ document.getElementById('generateLinkForm').addEventListener('submit', async (e)
     const fileId = document.getElementById('fileIdSelect').value;
 
     try {
-        const response = await fetch(`http://localhost:10000/api/files/${fileId}`);
+        const response = await fetch(`https://nodejs-5-2dpf.onrender.com/api/files/${fileId}`);
         const result = await response.json();
 
         if (!response.ok) {
@@ -63,7 +63,7 @@ document.getElementById('sendEmailForm').addEventListener('submit', async (e) =>
     const email = document.getElementById('emailInput').value;
 
     try {
-        const response = await fetch('http://localhost:10000/api/files/send-email', {
+        const response = await fetch('https://nodejs-5-2dpf.onrender.com/api/files/send-email', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
