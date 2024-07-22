@@ -10,6 +10,7 @@ import productRoutes from './routes/product.js';
 import wishlistRoutes from './routes/wishlist.js';
 import orderRoutes from './routes/order.js';
 import loggingMiddleware from "./middleware/loggingMiddleware.js";
+import { authMiddleware } from "./middleware/authMiddleware.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -25,7 +26,7 @@ app.use(loggingMiddleware)
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/wishlist", wishlistRoutes);
-app.use('/api/v1/order',orderRoutes);
+app.use('/api/v1/order',authMiddleware,orderRoutes);
 
 
 app.listen(PORT,()=>{

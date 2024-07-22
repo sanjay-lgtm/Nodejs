@@ -38,7 +38,7 @@ const addressSchema = {
 
 const orderSchema = new mongoose.Schema({
     items: {
-        type: { itemSchema },
+        type: [itemSchema],
 
     },
     totalAmount: {
@@ -58,12 +58,20 @@ const orderSchema = new mongoose.Schema({
     },
     orderStatus: {
         type: String,
-        enum: ['PENDING', 'IN_PROCESS', 'SHIPHED', 'CANCELLED'],
+        enum: [
+            "PENDING",
+            "IN_PROCESS",
+            "SHIPPED",
+            "OUT_FOR_DELIVERY",
+            "DELIVERED",
+            "RETURNED",
+            "CANCELLED",
+        ],
         default: 'PENDING'
     },
     user: {
         type: mongoose.Types.ObjectId,
-        ref:'users'
+        ref: 'User'
     },
 
 }, {

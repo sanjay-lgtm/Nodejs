@@ -35,7 +35,10 @@ const productSchema = new mongoose.Schema({
     isActive: {
         type: Boolean,
         default: true
-    }
+    },
+    reviews: {
+        type: [reviewSchema],
+      },
 });
 
 export const Product = mongoose.model("products", productSchema);
