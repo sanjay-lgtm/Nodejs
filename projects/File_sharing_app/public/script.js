@@ -1,3 +1,4 @@
+// Event listener for file upload
 document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -14,23 +15,19 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             throw new Error(errorResponse.message || 'Network response was not ok');
         }
 
-       
-
         const result = await response.json();
         document.getElementById('uploadResult').innerText = result.message;
-        
+
         if (result.success) {
-            // Create a new option element for the dropdown
+            // Add file ID to dropdowns if needed
+            const fileIdSelect = document.getElementById('fileIdSelect');
+            const emailFileIdSelect = document.getElementById('emailFileIdSelect');
             const option = document.createElement('option');
             option.value = result.fileId;
             option.text = `File ID: ${result.fileId}, Name: ${result.fileName}, Size: ${result.fileSize} bytes`;
-        
-            // Append the option to the relevant dropdowns
-            document.getElementById('fileDetailsSelect').appendChild(option);
-            document.getElementById('fileIdSelect').appendChild(option.cloneNode(true));
-            document.getElementById('emailFileIdSelect').appendChild(option.cloneNode(true));
-            
-            document.getElementById('fileDetailsDropdown').style.display = 'block';
+
+            fileIdSelect.appendChild(option);
+            emailFileIdSelect.appendChild(option.cloneNode(true));
         }
     } catch (error) {
         console.error('Error:', error);
@@ -38,9 +35,10 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     }
 });
 
+// Event listener for generating a shareable link
 document.getElementById('generateLinkForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const fileId = document.getElementById('fileIdSelect').value;
+    const fileId = document.getElementById('fileIdInput').value;
 
     try {
         const response = await fetch(`https://nodejs-5-2dpf.onrender.com/api/files/${fileId}`);
@@ -57,9 +55,10 @@ document.getElementById('generateLinkForm').addEventListener('submit', async (e)
     }
 });
 
+// Event listener for sending an email
 document.getElementById('sendEmailForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const emailFileId = document.getElementById('emailFileIdSelect').value;
+    const emailFileId = document.getElementById('emailFileIdInput').value;
     const email = document.getElementById('emailInput').value;
 
     try {
