@@ -3,10 +3,17 @@ import  { downloadFile, generateSharableLink, sendMail, uploadFile }  from '../c
 
 const router = express.Router();
 
-router.post('/upload',uploadFile); //uplaod a file
-// router.get('/file/:fileId',generateSharableLink); // Generate a sharable /downloadable link
-router.get('/files', generateSharableLink);
-router.get('/download/:fileId',downloadFile) // Download the file
-router.post('/send-email',sendMail);
+
+// Route for uploading a file
+router.post('/upload', uploadFile);
+
+// Route for generating a shareable link
+router.get('/files/:fileId', generateSharableLink);
+
+// Route for downloading a file
+router.get('/download/:fileId', downloadFile);
+
+// Route for sending an email
+router.post('/send-email', sendMail);
 
 export default router;
