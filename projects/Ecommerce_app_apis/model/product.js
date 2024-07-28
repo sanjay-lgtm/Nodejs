@@ -36,9 +36,9 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    reviews: {
-        type: [reviewSchema],
-      },
+    // reviews: {
+    //     type: [reviewSchema],
+    //   },
 });
 
 export const Product = mongoose.model("products", productSchema);
